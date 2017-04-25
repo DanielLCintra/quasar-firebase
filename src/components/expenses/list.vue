@@ -1,15 +1,9 @@
 <script>
 
 	import { Dialog } from 'quasar'
-	import { setDone} from '../../persistence'
 
 	export default{
-
-		computed:{
-			list(){
-				return this.$store.state.Expenses.list
-			}
-		},
+		props:['list'],
 		methods:{
 			askRemove(expense){
 
@@ -31,15 +25,12 @@
 				})
 			},
 			remove(expense){
-
-				this.$store.commit('REMOVE_EXPENSE', expense)
+ 
 			
 			},
 			toggle(expense){
 				
 				expense.done = !expense.done
-
-				setDone(expense)
 				
 			}
 		}
