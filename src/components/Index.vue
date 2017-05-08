@@ -14,10 +14,16 @@
 
 				const obj = data.val()
 
-				this.list = map(obj, expense => expense)
+				this.list = map(obj, (expense, index) => {
+
+					expense.id = index
+
+					return expense
+
+				})
 				
 			})
-		},
+		},	
 		data(){
 			return {
 				list: []

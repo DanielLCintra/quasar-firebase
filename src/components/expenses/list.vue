@@ -25,12 +25,15 @@
 				})
 			},
 			remove(expense){
- 
+ 			
+ 				this.$db.ref(`expenses/${expense.id}`).remove()
 			
 			},
 			toggle(expense){
 				
 				expense.done = !expense.done
+
+				this.$db.ref(`expenses/${expense.id}`).update(expense)
 				
 			}
 		}
@@ -42,7 +45,7 @@
 		<div class="expense" v-for="expense in list" @click="toggle(expense)">
 			<p :class="{ done: expense.done }">{{ expense.date }} - R${{ expense.amount }}</p>
 			<p :class="{ done: expense.done }">{{ expense.description }}</p>
-			<a class="removeLink" href="#" @click.prevent="askRemove(expense)"> remove</a>
+			<a class="removeLink" href="#" @click.prevent="askRemove(expense)"> remover</a>
 		</div>	
 	</div>
 </template>
