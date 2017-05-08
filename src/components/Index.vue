@@ -2,11 +2,21 @@
 
 	import CcForm from './expenses/form.vue'
 	import CcList from './expenses/list.vue'
+	import { map } from 'lodash'
 
 	export default{
 		components: {
 			CcForm,
 			CcList
+		},
+		mounted(){
+			this.$db.ref('expenses').on('value', data => {
+
+				const obj = data.val()
+
+				this.list = map(obj, expense => expense)
+				
+			})
 		},
 		data(){
 			return {

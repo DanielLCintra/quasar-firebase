@@ -1,7 +1,6 @@
 <script>
 
 	import moment from 'moment'
-	import { Utils } from 'quasar' 
  
 	export default{
 
@@ -19,9 +18,7 @@
 		methods:{
 			submit () {
 
-				const cloned = JSON.parse(JSON.stringify(this.expense))
-
-				cloned.id = Utils.uid()
+				this.$db.ref('expenses').push(this.expense)
 
 				this.reset()
 
