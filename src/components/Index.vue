@@ -1,5 +1,6 @@
 <script>
 
+	import firebase from 'firebase' 
 	import CcForm from './expenses/form.vue'
 	import CcList from './expenses/list.vue'
 	import { map } from 'lodash'
@@ -28,6 +29,11 @@
 			return {
 				list: []
 			}
+		},
+		methods:{
+			logout(){
+				firebase.auth().signOut()
+			}
 		}
 
 	}
@@ -35,7 +41,17 @@
 
 <template>
 	<q-layout>
+		
+		<q-drawer ref="drawer">
+			<button class="primary" style="width: 100%" @click="logout">Logout</button>
+		</q-drawer>
+
 		<div slot="header" class="toolbar">
+
+			<button class="hide-on-drawer-visible" @click="$refs.drawer.open()">
+				<i>menu</i>
+			</button>
+
 			<q-toolbar-title :padding="0">
 				Despesas em dinheiro vivo
 			</q-toolbar-title>

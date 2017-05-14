@@ -12,7 +12,7 @@ import router from './router'
 import database from './plugins/database'
 
 Vue.use(Quasar) // Install Quasar Framework
-Vue.use(database)
+Vue.use(database, { router })
 
 Quasar.start(() => {
   /* eslint-disable no-new */
