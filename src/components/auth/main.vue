@@ -1,5 +1,4 @@
 <script>
-	import firebase from 'firebase'
 
 	export default {
 		data () {
@@ -13,13 +12,13 @@
 	      		const { email, password } = this
 
 		    	if (email !== '' && password !== '') {
-		    		firebase.auth().signInWithEmailAndPassword(email, password)
+		    		this.$auth.signInWithEmailAndPassword(email, password)
 		    	}
 		    }
 		  },
 		mounted () {
 
-			firebase.auth().onAuthStateChanged(user => {
+			this.$auth.onAuthStateChanged(user => {
 				if (user) {
 			    	this.$router.push({path: '/'})
 			    }
